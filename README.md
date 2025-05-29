@@ -9,6 +9,7 @@ This is a **PDF-based RAG (Retrieval-Augmented Generation)** chatbot that lets y
 
 ---
 
+
 ## 🚀 How It Works
 
 ### 1. Upload PDF
@@ -44,10 +45,3 @@ HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
 
 ---
 
-## Some Screenshot of Work
-
-![](img-1.png)
-
----
-
-![](img-2.png)
