@@ -1,5 +1,17 @@
-import streamlit as st
+# --- ABSOLUTELY ESSENTIAL: SQLITE3 FIX FOR CHROMADB DEPLOYMENT ---
+# These imports and the sys.modules swap MUST be at the very top
+# before any other imports that might implicitly load sqlite3
+import sys
 import os
+
+try:
+    __import__('pysqlite3')
+    sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+except ImportError:
+    pass # If pysqlite3 isn't available, proceed with default sqlite3 (for local dev without it)
+# --- END OF SQLITE3 FIX ---
+
+import streamlit as st
 import tempfile
 from dotenv import load_dotenv
 
@@ -20,7 +32,8 @@ from langchain_groq import ChatGroq
 load_dotenv()
 
 # --- Page Configuration ---
-st.set_page_config(page_title="PDF AI Assistant 🚀", layout="centered", initial_sidebar_state="expanded")
+# Updated page title to PagePal AI
+st.set_page_config(page_title="PagePal AI 🤖", layout="centered", initial_sidebar_state="expanded")
 
 # --- Custom CSS for a better look and feel ---
 st.markdown("""
@@ -206,7 +219,8 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # --- Title ---
-st.markdown('<h1 class="main-header">📄 PDF AI Assistant: Your Document Companion 🧠</h1>', unsafe_allow_html=True)
+# Updated title to PagePal AI
+st.markdown('<h1 class="main-header">📄 PagePal AI 🤖: Your Document Companion 🧠</h1>', unsafe_allow_html=True)
 
 # --- Sidebar for Navigation and Configuration ---
 with st.sidebar:
@@ -238,7 +252,7 @@ with st.sidebar:
 
         st.markdown("### Advanced Model Settings (Optional) 🛠️")
         temperature = st.slider("🌡️ **Temperature**", min_value=0.0, max_value=2.0, value=0.7, step=0.1,
-                                help="Controls the randomness of the output. Higher values mean more creative, lower values mean more deterministic.")
+                                help="Controls the randomness of the output. Higher values means more creative, lower values means more deterministic.")
         top_p = st.slider("🔝 **Top P**", min_value=0.0, max_value=1.0, value=1.0, step=0.05,
                           help="Controls nucleus sampling. Only considers tokens whose cumulative probability exceeds top_p.")
         max_tokens = st.slider("📏 **Max Tokens**", min_value=50, max_value=4096, value=1024, step=50,
