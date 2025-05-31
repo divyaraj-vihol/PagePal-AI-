@@ -5,6 +5,11 @@ This is a **PDF-based RAG (Retrieval-Augmented Generation)** chatbot that lets y
 - Embed its contents into a vector store
 - Ask questions about the content
 - Get intelligent responses powered by **Groq LLM**
+
+## Project Demo
+https://github.com/user-attachments/assets/9f1a6b7b-91b3-4c9f-908e-393fe62f76ff
+
+
 - View and maintain full **chat history** within the session
 
 ---
